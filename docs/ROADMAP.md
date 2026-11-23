@@ -34,7 +34,7 @@ Profiles antes que Discovery porque la búsqueda necesita perfiles publicados. G
 | R7 | Arranque en frío (pocos perfiles) | Búsquedas vacías al lanzar | Fuera de alcance técnico; señalar al dueño del producto. UI de "sin resultados" con sugerencias |
 | R8 | Costos de infraestructura (email, storage, hosting) | Contradice gratuidad si no se sostiene | Decidir proveedores con tier gratuito o self-hosted (D9–D11) |
 | R9 | Estado en memoria de proceso | Rompe al escalar a >1 réplica | Listado en `ARCHITECTURE.md` §Escalado |
-| R10 | Etapa 1 depende de cambios en ElRoso.Commons (feed público, LICENSE, dependencias separadas) | #2–#5 bloqueados o con dependencias que Platform no usa | Requisitos C1–C6 de ADR-0010 resueltos antes de referenciar el paquete |
+| R10 | Platform atado al ritmo de ElRoso.Commons | Un cambio de Platform puede esperar una versión nueva de Commons | Paquetes por área en nuget.org (C1–C6 de ADR-0010 cumplidos); revisar licencia de cada dependencia nueva de Commons |
 
 ## Decisiones
 

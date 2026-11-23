@@ -1,6 +1,6 @@
 # Plan MVP — Platform
 
-Estado: **aprobado**. Paso 0 hecho (`0dcd8c6`). Etapa 0 aprobada (#1, PR #9). Commons aprobado como base transversal (ADR-0010). Siguiente: requisitos C1–C6 de Commons y planificar Etapa 1 (#2–#8) con `planner`.
+Estado: **aprobado**. Paso 0 hecho (`0dcd8c6`). Etapa 0 aprobada (#1, PR #9). Commons aprobado como base transversal (ADR-0010). Requisitos C1–C6 de Commons cumplidos. Siguiente: planificar Etapa 1 (#2–#8) con `planner`.
 
 ## Lo que entiendo que buscás
 
