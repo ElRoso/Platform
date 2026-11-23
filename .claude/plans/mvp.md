@@ -1,6 +1,6 @@
 # Plan MVP — Platform
 
-Estado: **aprobado**. Paso 0 hecho (`0dcd8c6`). Etapa 0 aprobada (#1, PR #9). Siguiente: planificar Etapa 1 (#2–#8) con `planner`.
+Estado: **aprobado**. Paso 0 hecho (`0dcd8c6`). Etapa 0 aprobada (#1, PR #9). Commons aprobado como base transversal (ADR-0010). Siguiente: requisitos C1–C6 de Commons y planificar Etapa 1 (#2–#8) con `planner`.
 
 ## Lo que entiendo que buscás
 
@@ -71,10 +71,10 @@ Cierre de Etapa 0: resumen ejecutivo en el PR y **espera de aprobación** antes 
 Cada slice = un issue = domain → application → infrastructure → API → frontend → tests. Se planifica en detalle con `planner` al llegar.
 
 ### Etapa 1 — Fundaciones
-1. Solución .NET con Host, BuildingBlocks y un módulo vacío de referencia. Test de arquitectura (NetArchTest) rojo → verde con las reglas §18.
+1. Solución .NET con Host, BuildingBlocks y un módulo vacío de referencia; referencia a ElRoso.Commons (ADR-0010). Test de arquitectura (NetArchTest) rojo → verde con las reglas §18.
 2. `docker-compose.yml`: Postgres + PostGIS, Mailpit (email local), volúmenes, health checks.
 3. Persistencia base: `DbContext` por módulo con schema propio, `NoTracking` global, convención UTC, migración inicial.
-4. Pipeline HTTP: Problem Details, Serilog estructurado, correlation id, health checks, OpenTelemetry, CORS, headers de seguridad, rate limiter base.
+4. Pipeline HTTP sobre ElRoso.Commons (lo que falte se cambia en Commons): Problem Details, Serilog estructurado, correlation id, health checks, OpenTelemetry, CORS, headers de seguridad, rate limiter base.
 5. Next.js App Router + TS strict + Tailwind + shadcn/ui, tokens de diseño, layout mobile con navegación inferior, Vitest + RTL + Playwright con un test de humo.
 6. GitHub Actions: formato, análisis, tests back/front, integración con Testcontainers, build, verificación de migraciones, gate de cobertura.
 7. `CLAUDE.md` sección "Comandos" y README con setup.
@@ -162,6 +162,7 @@ Cada una va como ADR o como sección del doc que corresponda. Recomendación ent
 | D15 | Contacto de visitantes | solo WhatsApp/teléfono públicos / también solicitud interna anónima | [visitante: solo canales públicos; solicitud interna requiere cuenta verificada] |
 | D16 | Nombre del producto y dominio | — | [necesario antes de Etapa 4 por SEO] |
 | D18 | Licencia del proyecto | **Decidido:** AGPL-3.0-only. Dependencias: solo licencias compatibles (MIT, BSD, Apache 2.0, LGPL, MPL 2.0, GPL/AGPL 3) | — |
+| D23 | Base transversal del backend | **Decidido:** ElRoso.Commons; cambios en Commons, no reescritura en Platform (ADR-0010) | — |
 | D17 | Issues en GitHub | crear uno por slice ahora / crear por etapa al llegar | [crear los de Etapa 0 y 1 ahora; el resto al planificar cada etapa] |
 
 ## Ejecución

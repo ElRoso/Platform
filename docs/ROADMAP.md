@@ -34,6 +34,7 @@ Profiles antes que Discovery porque la búsqueda necesita perfiles publicados. G
 | R7 | Arranque en frío (pocos perfiles) | Búsquedas vacías al lanzar | Fuera de alcance técnico; señalar al dueño del producto. UI de "sin resultados" con sugerencias |
 | R8 | Costos de infraestructura (email, storage, hosting) | Contradice gratuidad si no se sostiene | Decidir proveedores con tier gratuito o self-hosted (D9–D11) |
 | R9 | Estado en memoria de proceso | Rompe al escalar a >1 réplica | Listado en `ARCHITECTURE.md` §Escalado |
+| R10 | Etapa 1 depende de cambios en ElRoso.Commons (feed público, LICENSE, dependencias separadas) | #2–#5 bloqueados o con dependencias que Platform no usa | Requisitos C1–C6 de ADR-0010 resueltos antes de referenciar el paquete |
 
 ## Decisiones
 
@@ -54,6 +55,7 @@ Profiles antes que Discovery porque la búsqueda necesita perfiles publicados. G
 | D15 | Visitante usa canales públicos; solicitud interna requiere cuenta verificada | — |
 | D17 | Issues de Etapas 0 y 1 creados; el resto por etapa | — |
 | D18 | AGPL-3.0-only, solo dependencias compatibles | 0009 |
+| D23 | Backend usa ElRoso.Commons; lo que falte se cambia en Commons | 0010 |
 
 ### Pendientes
 
