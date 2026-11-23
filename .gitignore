@@ -1,0 +1,39 @@
+# .NET
+bin/
+obj/
+*.user
+*.suo
+.vs/
+TestResults/
+coverage*.xml
+coverage.cobertura.xml
+*.trx
+appsettings.*.local.json
+
+# Node / Next.js
+node_modules/
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+coverage/
+playwright-report/
+test-results/
+blob-report/
+
+# Entorno y secretos
+.env
+.env.*
+!.env.example
+
+# Editores y sistema
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.swp
+.DS_Store
+Thumbs.db
+
+# Claude Code local
+.claude/settings.local.json
+.claude/hooks/.session-reminder-ack
