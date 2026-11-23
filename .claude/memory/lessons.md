@@ -7,6 +7,7 @@ metadata:
 
 # Lessons
 <!-- Lo más reciente arriba. Borrar lo que ya no aplique. Mismo error dos veces: reescribir la línea. -->
+- Cuando haga falta algo transversal en backend (errores, logging, health, auth, forwarded headers), usar ElRoso.Commons; si falta o no encaja, proponer el cambio en Commons en vez de escribirlo en Platform (ADR-0010).
 - Cuando se arranca una tarea, mapear con agentes de exploración y seguir análisis → plan → implementación → verificación; no trabajar directo.
 - Cuando un agente informa un chequeo en verde (react-doctor, lint, tests), correrlo uno mismo antes de seguir: hubo informes "limpio" con avisos reales.
 - Cuando un pedido toca backend y frontend, terminar backend en verde antes de arrancar frontend y armarlo con el contrato real; en paralelo la PC se satura.
