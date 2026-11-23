@@ -10,8 +10,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Estado actual del repo
 
-- Git inicializado, rama `mainline`, remoto `github.com/ElRoso/Platform`. Árbol de carpetas de AGENTS.md §23 creado vacío (`.gitkeep`). Sin código ni `README.md`.
-- Fase: **Etapa 0 – Discovery** (AGENTS.md §26 y §28). Entregables solo en `/docs`. No crear solución .NET, app Next.js, Docker ni instalar dependencias hasta aprobación explícita.
+- Git inicializado, rama `mainline`, remoto `github.com/ElRoso/Platform`. Árbol de carpetas de AGENTS.md §23 creado vacío (`.gitkeep`). Sin código.
+- Fase: **Etapa 1 – Fundaciones** (AGENTS.md §26). Discovery aprobado: `docs/` es la referencia de dominio, arquitectura, API y seguridad; reglas `BR-xxx` en `docs/DOMAIN.md`, decisiones en `docs/ROADMAP.md` y `docs/decisions/`. Cada issue de Etapa 1 (#2–#8) se planifica con `planner` antes de ejecutar.
 
 ## Comandos
 
