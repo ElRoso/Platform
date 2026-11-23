@@ -69,9 +69,9 @@ Profiles antes que Discovery porque la búsqueda necesita perfiles publicados. G
 | D21 | Hasher de contraseñas | Argon2id (librería OSS) / PBKDF2 de ASP.NET Identity | Argon2id | Etapa 2 |
 | D22 | Generador de tipos TS desde OpenAPI | `openapi-typescript` (MIT) / otro | `openapi-typescript` | Etapa 1 |
 
-### Reglas propuestas que no están en AGENTS.md
+### Reglas agregadas al modelar (aprobadas por el dueño)
 
-Agregadas en `DOMAIN.md` al modelar. Necesitan OK del dueño:
+No están en AGENTS.md; viven en `DOMAIN.md` y `API.md`:
 
 | Regla | Qué agrega |
 |---|---|

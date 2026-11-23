@@ -1,6 +1,6 @@
 # Plan MVP — Platform
 
-Estado: **aprobado**. Paso 0 hecho (`0dcd8c6`). Etapa 0 entregada en `docs/` (#1), esperando aprobación de Discovery para Etapa 1.
+Estado: **aprobado**. Paso 0 hecho (`0dcd8c6`). Etapa 0 aprobada (#1, PR #9). Siguiente: planificar Etapa 1 (#2–#8) con `planner`.
 
 ## Lo que entiendo que buscás
 

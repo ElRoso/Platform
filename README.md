@@ -4,7 +4,7 @@ Plataforma gratuita y open source que conecta personas que saben hacer con perso
 
 ## Estado
 
-**Etapa 0 — Discovery.** No hay código todavía. Ver [docs/ROADMAP.md](docs/ROADMAP.md).
+**Etapa 0 — Discovery aprobada.** Próxima: Etapa 1 (fundaciones). No hay código todavía. Ver [docs/ROADMAP.md](docs/ROADMAP.md).
 
 ## Documentación
 
