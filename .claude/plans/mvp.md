@@ -1,6 +1,6 @@
 # Plan MVP — Platform
 
-Estado: **borrador, esperando aprobación del dueño**.
+Estado: **aprobado**. Paso 0 hecho (`0dcd8c6`). Etapa 0 entregada en `docs/` (#1), esperando aprobación de Discovery para Etapa 1.
 
 ## Lo que entiendo que buscás
 
