@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <ItemGroup>
+    <PackageReference Include="ElRoso.Commons.AspNetCore" />
+    <PackageReference Include="ElRoso.Commons.Serilog" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\BuildingBlocks\Platform.BuildingBlocks.Domain\Platform.BuildingBlocks.Domain.csproj" />
+    <ProjectReference Include="..\..\BuildingBlocks\Platform.BuildingBlocks.Application\Platform.BuildingBlocks.Application.csproj" />
+    <ProjectReference Include="..\..\BuildingBlocks\Platform.BuildingBlocks.Infrastructure\Platform.BuildingBlocks.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\BuildingBlocks\Platform.BuildingBlocks.Api\Platform.BuildingBlocks.Api.csproj" />
+    <ProjectReference Include="..\..\Modules\Identity\Platform.Identity.Domain\Platform.Identity.Domain.csproj" />
+    <ProjectReference Include="..\..\Modules\Identity\Platform.Identity.Application\Platform.Identity.Application.csproj" />
+    <ProjectReference Include="..\..\Modules\Identity\Platform.Identity.Infrastructure\Platform.Identity.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Modules\Identity\Platform.Identity.Api\Platform.Identity.Api.csproj" />
+    <ProjectReference Include="..\..\Modules\Identity\Platform.Identity.Contracts\Platform.Identity.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>

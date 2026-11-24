@@ -37,6 +37,8 @@ Versión exacta y licencia se revisan al agregar cada paquete.
 
 ## Tests de arquitectura
 
+Comando: `dotnet test backend/tests/ArchitectureTests/Platform.ArchitectureTests/Platform.ArchitectureTests.csproj`.
+
 - `*.Domain` no depende de `Infrastructure`, `Api`, EF Core ni ASP.NET.
 - `*.Application` no depende de `Api` ni de `Infrastructure`.
 - `*.Api` no depende de `Infrastructure` ni usa `DbContext`.

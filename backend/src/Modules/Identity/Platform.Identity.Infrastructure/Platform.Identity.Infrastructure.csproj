@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\Platform.Identity.Application\Platform.Identity.Application.csproj" />
+    <ProjectReference Include="..\Platform.Identity.Domain\Platform.Identity.Domain.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\Platform.BuildingBlocks.Infrastructure\Platform.BuildingBlocks.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

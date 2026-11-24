@@ -1,0 +1,21 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- Commons (ElRoso) -->
+    <PackageVersion Include="ElRoso.Commons.AspNetCore" Version="2.0.2" />
+    <PackageVersion Include="ElRoso.Commons.Serilog" Version="1.0.3" />
+    <PackageVersion Include="ElRoso.Commons.EntityFrameworkCore" Version="1.0.2" />
+    <PackageVersion Include="ElRoso.Commons.Core" Version="1.0.2" />
+    <!-- Pruebas de arquitectura -->
+    <PackageVersion Include="NetArchTest.eNhancedEdition" Version="1.4.5" />
+    <!-- EF Core -->
+    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="10.0.15" />
+    <!-- xUnit -->
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+    <PackageVersion Include="xunit" Version="2.9.2" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="2.8.2" />
+    <PackageVersion Include="coverlet.collector" Version="6.0.2" />
+  </ItemGroup>
+</Project>

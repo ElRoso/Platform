@@ -10,13 +10,28 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Estado actual del repo
 
-- Git inicializado, rama `mainline`, remoto `github.com/ElRoso/Platform`. Árbol de carpetas de AGENTS.md §23 creado vacío (`.gitkeep`). Sin código.
-- Fase: **Etapa 1 – Fundaciones** (AGENTS.md §26). Discovery aprobado: `docs/` es la referencia de dominio, arquitectura, API y seguridad; reglas `BR-xxx` en `docs/DOMAIN.md`, decisiones en `docs/ROADMAP.md` y `docs/decisions/`. Cada issue de Etapa 1 (#2–#8) se planifica con `planner` antes de ejecutar.
+- Base backend del #2 implementada y compilable (solución .NET 10, Host, cuatro BuildingBlocks, esqueleto del módulo Identity, tests de arquitectura). Sin persistencia, sin endpoints de negocio, sin frontend.
+- Fase: **Etapa 1 – Fundaciones** (AGENTS.md §26). Discovery aprobado: `docs/` es la referencia de dominio, arquitectura, API y seguridad; reglas `BR-xxx` en `docs/DOMAIN.md`, decisiones en `docs/ROADMAP.md` y `docs/decisions/`. Issues #3–#8 consumen esta base; cada uno se planifica con `planner` antes de ejecutar.
 
 ## Comandos
 
-Ninguno todavía. Se definen en Etapa 1 y deben replicar el CI; el agente `tester` los toma de acá.
+```bash
+# Restaurar y compilar
+dotnet restore backend/Platform.sln
+dotnet build backend/Platform.sln -c Release
 
+# Formato (debe pasar sin cambios)
+dotnet format backend/Platform.sln --verify-no-changes
+
+# Tests de arquitectura
+dotnet test backend/tests/ArchitectureTests/Platform.ArchitectureTests/Platform.ArchitectureTests.csproj
+
+# Arranque del Host (http://localhost:5211)
+dotnet run --project backend/src/Host/Platform.Host/Platform.Host.csproj
+# chequeos: curl http://localhost:5211/   y   curl http://localhost:5211/health
+```
+
+El agente `tester` toma los comandos de acá y los replica del CI.
 ## Reglas, agentes y memoria
 
 - `.claude/rules/`: `workflow.md`, `code.md`, `comments.md`, `git.md`, `testing.md`, `security.md`; `backend.md` y `frontend.md` se cargan solo bajo `backend/**` y `frontend/**`.

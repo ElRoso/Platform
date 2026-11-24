@@ -73,11 +73,11 @@ backend/src/BuildingBlocks/
 └── Platform.BuildingBlocks.Api/             Problem Details, filtros de validación, rate limiting, auth helpers
 ```
 
-Sin lógica de negocio. Si algo de dominio aparece acá, va mal.
+En #2 los cuatro proyectos contienen solo un `AssemblyMarker` público y las referencias de su capa; los tipos listados se agregan en los issues de dominio. Sin lógica de negocio. Si algo de dominio aparece acá, va mal.
 
 ### Host
 
-`backend/src/Host/Platform.Host/`: `Program.cs`, composición de módulos (`services.AddIdentityModule()`, `app.MapIdentityEndpoints()`), configuración, middleware, health checks, workers.
+`backend/src/Host/Platform.Host/`: `Program.cs`, composición con `ElRoso.Commons` (`AddX`/`UseX`: configuración, Serilog, forwarded headers, exception handler, health checks), configuración, middleware. En #2 expone `/` (info) y `/health`; la composición de módulos (`AddIdentityModule()`, `MapIdentityEndpoints()`) se agrega cuando existan endpoints.
 
 ### Tests
 

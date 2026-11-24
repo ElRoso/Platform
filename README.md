@@ -4,8 +4,17 @@ Plataforma gratuita y open source que conecta personas que saben hacer con perso
 
 ## Estado
 
-**Etapa 0 — Discovery aprobada.** Próxima: Etapa 1 (fundaciones). No hay código todavía. Ver [docs/ROADMAP.md](docs/ROADMAP.md).
+**Etapa 1 — Fundaciones (en curso).** Base backend compilable del #2: solución .NET 10, Host, cuatro BuildingBlocks, esqueleto del módulo Identity y tests de arquitectura. Sin persistencia, sin endpoints de negocio, sin frontend todavía. Ver [docs/ROADMAP.md](docs/ROADMAP.md).
 
+### Backend
+
+```bash
+dotnet build backend/Platform.sln -c Release
+dotnet test backend/tests/ArchitectureTests/Platform.ArchitectureTests/Platform.ArchitectureTests.csproj
+dotnet run --project backend/src/Host/Platform.Host/Platform.Host.csproj
+```
+
+El Host responde en `http://localhost:5211/` (info) y `http://localhost:5211/health`. Comandos completos en la sección "Comandos" de [CLAUDE.md](CLAUDE.md).
 ## Documentación
 
 | Documento | Contenido |
