@@ -10,7 +10,7 @@ TDD obligatorio: RED (test que falla por el motivo esperado, salida mostrada) â†
 
 | Capa | Herramienta | Licencia |
 |---|---|---|
-| Runner .NET | xUnit v3 | Apache 2.0 |
+| Runner .NET | xUnit 2.9.2 | Apache 2.0 |
 | Assertions | AwesomeAssertions | Apache 2.0 |
 | Dobles | NSubstitute | BSD-3 |
 | BD real | Testcontainers (`postgis/postgis`) | MIT |

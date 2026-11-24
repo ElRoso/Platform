@@ -60,6 +60,8 @@ erDiagram
 
 Además: `email_verification_token`, `password_reset_token` (hash, vence, usado), `audit_log`.
 
+Estado del #4: solo existe `identity.outbox_message` (`id uuid`, `seq bigint identity`, `type text`, `payload jsonb`, `occurred_at` y `processed_at` `timestamptz`, `status smallint` con check 0..2, `attempts smallint`, `last_error text`) y el índice parcial `(processed_at, seq) WHERE processed_at IS NULL`. Las tablas de dominio de arriba se crean en Etapa 2. No hay `inbox_message` hasta el primer consumidor.
+
 ### profiles
 
 ```mermaid
@@ -166,7 +168,10 @@ Checks: largos de texto según VOs, `radius_km BETWEEN 1 AND 200`, `experience_y
 ## Migraciones
 
 - `dotnet ef migrations add` por `DbContext`; nombre descriptivo.
-- Aplicación: comando explícito al deploy (bundle de migraciones), nunca `Migrate()` automático en producción.
+- Cada contexto guarda su historial en `__ef_migrations_history` de su propio schema (`identity.__ef_migrations_history` para Identity).
+- Aplicación: comando explícito al deploy (bundle de migraciones), nunca `Migrate()` ni `EnsureCreated()` automáticos en producción ni en el arranque del Host.
+- Comando de desarrollo: `dotnet ef database update --project backend/src/Modules/Identity/Platform.Identity.Infrastructure --startup-project backend/src/Host/Platform.Host --context IdentityDbContext`, con `ConnectionStrings__Default` exportada.
+- Las migraciones generadas usan namespace con ámbito de archivo y el proveedor Npgsql está pinneado en `Directory.Packages.props`; Npgsql y EF Core se actualizan juntos.
 - Compatibles con deploy progresivo: primero aditivas (columna nullable, tabla nueva), después código, después limpieza en migración aparte.
 - CI verifica que no queden cambios de modelo sin migración.
 - Migración destructiva requiere aprobación (AGENTS.md §27.5).

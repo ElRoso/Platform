@@ -3,6 +3,7 @@
   <ItemGroup>
     <PackageReference Include="ElRoso.Commons.AspNetCore" />
     <PackageReference Include="ElRoso.Commons.Serilog" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup>

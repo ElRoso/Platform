@@ -4,7 +4,7 @@ Plataforma gratuita y open source que conecta personas que saben hacer con perso
 
 ## Estado
 
-**Etapa 1 — Fundaciones (en curso).** Base backend compilable del #2: solución .NET 10, Host, cuatro BuildingBlocks, esqueleto del módulo Identity y tests de arquitectura. Sin persistencia, sin endpoints de negocio, sin frontend todavía. Ver [docs/ROADMAP.md](docs/ROADMAP.md).
+**Etapa 1 — Fundaciones (en curso).** Base backend del #2, entorno local del #3 y persistencia del #4: `IdentityDbContext` con schema `identity`, migración inicial con `identity.outbox_message` e historial por schema. Sin dominio de Identity, sin endpoints de negocio y sin frontend. Ver [docs/ROADMAP.md](docs/ROADMAP.md).
 
 ### Backend
 
@@ -14,7 +14,23 @@ dotnet test backend/tests/ArchitectureTests/Platform.ArchitectureTests/Platform.
 dotnet run --project backend/src/Host/Platform.Host/Platform.Host.csproj
 ```
 
-El Host responde en `http://localhost:5211/` (info) y `http://localhost:5211/health`. Comandos completos en la sección "Comandos" de [CLAUDE.md](CLAUDE.md).
+El Host responde en `http://localhost:5211/` (info) y `http://localhost:5211/health`. Requiere `ConnectionStrings__Default`. Comandos completos en la sección "Comandos" de [CLAUDE.md](CLAUDE.md).
+
+### Persistencia y migraciones
+
+`IdentityDbContext` usa el schema `identity`; su historial está en `identity.__ef_migrations_history`. El Host no migra al arrancar.
+
+```bash
+dotnet tool restore
+export ConnectionStrings__Default="Host=localhost;Port=5432;Database=platform;Username=platform;Password=change-me-local"
+dotnet ef database update \
+  --project backend/src/Modules/Identity/Platform.Identity.Infrastructure \
+  --startup-project backend/src/Host/Platform.Host \
+  --context IdentityDbContext
+dotnet test backend/tests/IntegrationTests/Platform.Identity.IntegrationTests/Platform.Identity.IntegrationTests.csproj
+```
+
+`dotnet ef migrations has-pending-model-changes` debe terminar sin cambios pendientes. Los tests de integración levantan su propio contenedor PostGIS y crean una base por corrida.
 
 ### Entorno local: PostgreSQL + Mailpit
 
