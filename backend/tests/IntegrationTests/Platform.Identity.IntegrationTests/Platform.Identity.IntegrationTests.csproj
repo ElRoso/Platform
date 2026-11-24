@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="xunit" />
+    <PackageReference Include="xunit.runner.visualstudio" />
+    <PackageReference Include="Testcontainers.PostgreSql" />
+    <PackageReference Include="Npgsql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\BuildingBlocks\Platform.BuildingBlocks.Infrastructure\Platform.BuildingBlocks.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\..\src\Modules\Identity\Platform.Identity.Infrastructure\Platform.Identity.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

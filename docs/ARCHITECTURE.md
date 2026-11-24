@@ -69,7 +69,7 @@ Módulos chicos (Favorites, Geography) pueden empezar con menos proyectos si el 
 backend/src/BuildingBlocks/
 ├── Platform.BuildingBlocks.Domain/          Entity, AggregateRoot, DomainEvent, Result/Error, ids tipados
 ├── Platform.BuildingBlocks.Application/     ICommandHandler, IQueryHandler, IUnitOfWork, paginación, IClock
-├── Platform.BuildingBlocks.Infrastructure/  outbox, dispatcher in-process, convenciones EF (UTC, snake_case)
+├── Platform.BuildingBlocks.Infrastructure/  PlatformDbContext, convenciones EF (UTC, snake_case), outbox, provider Npgsql, dispatcher in-process
 └── Platform.BuildingBlocks.Api/             Problem Details, filtros de validación, rate limiting, auth helpers
 ```
 
@@ -77,7 +77,7 @@ En #2 los cuatro proyectos contienen solo un `AssemblyMarker` público y las ref
 
 ### Host
 
-`backend/src/Host/Platform.Host/`: `Program.cs`, composición con `ElRoso.Commons` (`AddX`/`UseX`: configuración, Serilog, forwarded headers, exception handler, health checks), configuración, middleware. En #2 expone `/` (info) y `/health`; la composición de módulos (`AddIdentityModule()`, `MapIdentityEndpoints()`) se agrega cuando existan endpoints.
+`backend/src/Host/Platform.Host/`: `Program.cs`, composición con `ElRoso.Commons` (`AddX`/`UseX`: configuración, Serilog, forwarded headers, exception handler, health checks), configuración, middleware. En #4 registra `IdentityDbContext` y exige `ConnectionStrings__Default` (falla cerrado); no llama a `Migrate()`. Expone `/` (info) y `/health`; la composición de módulos (`AddIdentityModule()`, `MapIdentityEndpoints()`) se agrega cuando existan endpoints.
 
 ### Tests
 

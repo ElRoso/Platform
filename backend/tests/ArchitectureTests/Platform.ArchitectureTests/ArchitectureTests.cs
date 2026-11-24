@@ -114,6 +114,49 @@ public class ArchitectureTests
         Assert.True(result.IsSuccessful, Format(result));
     }
 
+    [Fact]
+    public void BuildingBlocksInfrastructure_DoesNotDependOn_BuildingBlocksApi()
+    {
+        var result = Types.InAssembly(BuildingBlocksInfrastructureAssembly)
+            .Should().NotHaveDependencyOnAny(new[] { "Platform.BuildingBlocks.Api" })
+            .GetResult();
+
+        Assert.True(result.IsSuccessful, Format(result));
+    }
+
+    [Fact]
+    public void IdentityInfrastructure_DoesNotDependOn_IdentityApi()
+    {
+        var result = Types.InAssembly(IdentityInfrastructureAssembly)
+            .Should().NotHaveDependencyOnAny(new[] { "Platform.Identity.Api" })
+            .GetResult();
+
+        Assert.True(result.IsSuccessful, Format(result));
+    }
+
+    [Fact]
+    public void BuildingBlocksInfrastructure_DoesNotDependOn_Modules()
+    {
+        var result = Types.InAssembly(BuildingBlocksInfrastructureAssembly)
+            .Should().NotHaveDependencyOnAny(new[] { "Platform.Identity", "Platform.Profiles", "Platform.Catalog" })
+            .GetResult();
+
+        Assert.True(result.IsSuccessful, Format(result));
+    }
+
+    [Fact]
+    public void DomainAndApplication_DoNotDependOn_Npgsql()
+    {
+        foreach (var assembly in new[] { BuildingBlocksDomainAssembly, BuildingBlocksApplicationAssembly, IdentityDomainAssembly, IdentityApplicationAssembly })
+        {
+            var result = Types.InAssembly(assembly)
+                .Should().NotHaveDependencyOnAny(new[] { "Npgsql" })
+                .GetResult();
+
+            Assert.True(result.IsSuccessful, Format(result));
+        }
+    }
+
     private static string Format(TestResult result)
     {
         if (result.IsSuccessful)

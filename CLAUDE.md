@@ -12,7 +12,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - Base backend del #2 implementada y compilable (solución .NET 10, Host, cuatro BuildingBlocks, esqueleto del módulo Identity, tests de arquitectura). Sin persistencia, sin endpoints de negocio, sin frontend.
 - Entorno local del #3: `docker-compose.yml` con PostgreSQL 17 + PostGIS y Mailpit; extensiones `postgis`, `unaccent`, `pg_trgm` y `citext`. Solo desarrollo.
-- Fase: **Etapa 1 – Fundaciones** (AGENTS.md §26). Discovery aprobado: `docs/` es la referencia de dominio, arquitectura, API y seguridad; reglas `BR-xxx` en `docs/DOMAIN.md`, decisiones en `docs/ROADMAP.md` y `docs/decisions/`. Issues #3–#8 consumen esta base; cada uno se planifica con `planner` antes de ejecutar.
+- Persistencia del #4: `PlatformDbContext` base en BuildingBlocks.Infrastructure y `IdentityDbContext` con schema `identity`; migración inicial con `identity.outbox_message`. Convenciones: NoTracking global, UTC, snake_case, enums `smallint`, UUID v7, `seq` identity. El Host exige `ConnectionStrings__Default` y no migra al arrancar.
+- Fase: **Etapa 1 – Fundaciones** (AGENTS.md §26). Discovery aprobado: `docs/` es la referencia de dominio, arquitectura, API y seguridad; reglas `BR-xxx` en `docs/DOMAIN.md`, decisiones en `docs/ROADMAP.md` y `docs/decisions/`. Issues #5–#8 consumen esta base; cada uno se planifica con `planner` antes de ejecutar.
 
 ## Comandos
 
@@ -26,6 +27,21 @@ dotnet format backend/Platform.sln --verify-no-changes
 
 # Tests de arquitectura
 dotnet test backend/tests/ArchitectureTests/Platform.ArchitectureTests/Platform.ArchitectureTests.csproj
+
+# Tests de integración (Testcontainers, una suite a la vez)
+dotnet test backend/tests/IntegrationTests/Platform.Identity.IntegrationTests/Platform.Identity.IntegrationTests.csproj
+
+# Migraciones: el Host exige ConnectionStrings__Default
+dotnet tool restore
+export ConnectionStrings__Default="Host=localhost;Port=5432;Database=platform;Username=platform;Password=change-me-local"
+dotnet ef database update \
+  --project backend/src/Modules/Identity/Platform.Identity.Infrastructure \
+  --startup-project backend/src/Host/Platform.Host \
+  --context IdentityDbContext
+dotnet ef migrations has-pending-model-changes \
+  --project backend/src/Modules/Identity/Platform.Identity.Infrastructure \
+  --startup-project backend/src/Host/Platform.Host \
+  --context IdentityDbContext
 
 # Arranque del Host (http://localhost:5211)
 dotnet run --project backend/src/Host/Platform.Host/Platform.Host.csproj
