@@ -11,6 +11,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Estado actual del repo
 
 - Base backend del #2 implementada y compilable (solución .NET 10, Host, cuatro BuildingBlocks, esqueleto del módulo Identity, tests de arquitectura). Sin persistencia, sin endpoints de negocio, sin frontend.
+- Entorno local del #3: `docker-compose.yml` con PostgreSQL 17 + PostGIS y Mailpit; extensiones `postgis`, `unaccent`, `pg_trgm` y `citext`. Solo desarrollo.
 - Fase: **Etapa 1 – Fundaciones** (AGENTS.md §26). Discovery aprobado: `docs/` es la referencia de dominio, arquitectura, API y seguridad; reglas `BR-xxx` en `docs/DOMAIN.md`, decisiones en `docs/ROADMAP.md` y `docs/decisions/`. Issues #3–#8 consumen esta base; cada uno se planifica con `planner` antes de ejecutar.
 
 ## Comandos
@@ -29,6 +30,11 @@ dotnet test backend/tests/ArchitectureTests/Platform.ArchitectureTests/Platform.
 # Arranque del Host (http://localhost:5211)
 dotnet run --project backend/src/Host/Platform.Host/Platform.Host.csproj
 # chequeos: curl http://localhost:5211/   y   curl http://localhost:5211/health
+
+# Entorno local: PostgreSQL + PostGIS y Mailpit
+cp .env.example .env
+docker compose up -d
+docker compose ps
 ```
 
 El agente `tester` toma los comandos de acá y los replica del CI.

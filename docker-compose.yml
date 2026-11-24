@@ -1,0 +1,47 @@
+services:
+  postgres:
+    image: postgis/postgis:17-3.7
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-platform}
+      POSTGRES_USER: ${POSTGRES_USER:-platform}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is required in .env}
+      TZ: UTC
+    command: ["postgres", "-c", "timezone=UTC"]
+    ports:
+      - "127.0.0.1:${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      # Montar el archivo y no la carpeta: la carpeta oculta el script de PostGIS de la imagen.
+      - ./infrastructure/docker/postgres/init/20-extensions.sql:/docker-entrypoint-initdb.d/20-extensions.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+    networks:
+      - platform
+
+  mailpit:
+    image: axllent/mailpit:v1.34.0
+    environment:
+      MP_DATABASE: /data/mailpit.db
+      MP_MAX_MESSAGES: 5000
+      MP_SMTP_AUTH_ACCEPT_ANY: 1
+      MP_SMTP_AUTH_ALLOW_INSECURE: 1
+      TZ: UTC
+    ports:
+      - "127.0.0.1:${MAILPIT_SMTP_PORT:-1025}:1025"
+      - "127.0.0.1:${MAILPIT_UI_PORT:-8025}:8025"
+    volumes:
+      - mailpit-data:/data
+    networks:
+      - platform
+
+volumes:
+  postgres-data:
+  mailpit-data:
+
+networks:
+  platform:
+    driver: bridge
